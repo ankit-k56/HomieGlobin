@@ -10,12 +10,10 @@ import Link from 'next/link'
 
 const formSchema = z.object({
     username: z.string().min(2, {
-      message: "Username must be at least 2 characters.",
-    }
-  
-    ),
-      email: z.string().email(),
-      password: z.string()
+      message: "Username must be at least 2 characters."
+    }),
+    email: z.string().email(),
+    password: z.string()
   })
 
 const SigninForm = () => {
@@ -26,8 +24,8 @@ const SigninForm = () => {
         },
       })
 
-      const onSubmit = () =>{
-        console.log("Hi")
+      const onSubmit = (values: z.infer<typeof formSchema>) =>{
+        console.log(values)
       }
 
 
@@ -37,19 +35,6 @@ const SigninForm = () => {
       
     <form onSubmit={form.handleSubmit(onSubmit)} className="">
         <div className='space-y-2'>
-      {/* <FormField
-        control={form.control}
-        name="username"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Username</FormLabel>
-            <FormControl>
-              <Input placeholder="shadcn" {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      /> */}
       <FormField
         control={form.control}
         name="email"
